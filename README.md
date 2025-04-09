@@ -28,6 +28,9 @@ Ce projet vise à créé un algorithme qui est capable de s'integrer à un rése
 ## Architecture du Projet
 ---
 
+![image](https://github.com/user-attachments/assets/df1cfa05-c7e3-4f20-acb0-2c293f22c9e3)
+
+
 ## Workflow et schéma d'architecture
 
 1. **Récupération des données (API et scrapping)** :
