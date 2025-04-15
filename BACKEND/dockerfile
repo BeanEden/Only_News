@@ -1,9 +1,17 @@
 FROM python:3.12
 
+# Installer netcat (nc)
+RUN apt-get update && apt-get install -y netcat-openbsd && apt-get clean
+
+# Créer le dossier de travail
 WORKDIR /app
 
-COPY ./ /app
+# Copier les fichiers du projet
+COPY . /app
+
+# Installer les dépendances
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+# Exposer le port utilisé par Django
 EXPOSE 8000
