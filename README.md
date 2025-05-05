@@ -72,7 +72,7 @@ cd Only_News
    - Sur Unix/macOS :
      ```bash
      python3 -m venv env
-     source venv/bin/activate
+     source env/bin/activate
      ```
    - Sur Windows :
      ```bash
@@ -83,6 +83,6 @@ cd Only_News
 2. **Mettre à jour `pip` et installer les dépendances** :
    ```bash
    pip install --upgrade pip
-   pip install -r requirements.txt
+   pip install -r requirement.txt
    ```
 ---
