@@ -9,6 +9,8 @@ WORKDIR /app
 # Copier les fichiers du projet
 COPY . /app
 
+RUN chmod +x /app/entrypoint.sh
+
 # Installer les dépendances
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
