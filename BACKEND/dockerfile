@@ -9,6 +9,7 @@ WORKDIR /app
 # Copier les fichiers du projet
 COPY . /app
 
+# Rendre le script exécutable
 RUN chmod +x /app/entrypoint.sh
 
 # Installer les dépendances
@@ -17,3 +18,6 @@ RUN pip install -r requirements.txt
 
 # Exposer le port utilisé par Django
 EXPOSE 8000
+
+# Définir l'entrypoint officiel (ce qui évite les problèmes pour les autres utilisateurs)
+ENTRYPOINT ["/app/entrypoint.sh"]
