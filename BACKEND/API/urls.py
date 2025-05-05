@@ -6,7 +6,7 @@ from .views import BlueSkySearchView
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Your API",
+      title="Only News",
       default_version='v1',
       description="Documentation API Only News",
    ),
