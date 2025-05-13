@@ -20,4 +20,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8000
 
 # Définir l'entrypoint officiel (ce qui évite les problèmes pour les autres utilisateurs)
-ENTRYPOINT ["/app/entrypoint.sh"]
+# ENTRYPOINT ["/app/entrypoint.sh"]
