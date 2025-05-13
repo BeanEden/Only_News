@@ -7,7 +7,7 @@ class UploadDataLake:
     Verifie si le bucket exist sinon le créé lui même.
     """
     def __init__(self, 
-                 endpoint_url='http://localhost:9000',
+                 endpoint_url='http://minio:9000',
                  access_key=None, 
                  secret_key=None):
         
