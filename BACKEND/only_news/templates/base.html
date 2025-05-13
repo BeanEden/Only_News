@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}OnlyNews{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Barre du haut - Navigation principale -->
+  <header class="header">
+    <div class="logo">
+      <h1>📰 OnlyNews</h1>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="/"><i class="fa fa-house"></i> Accueil</a></li>
+        <li><a href="/posts/"><i class="fa fa-newspaper"></i> Posts</a></li>
+        <li><a href="/deepfakes/"><i class="fa fa-mask"></i> Deepfakes</a></li>
+        <li><a href="/profile/"><i class="fa fa-user"></i> Profil</a></li>
+      </ul>
+    </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="Rechercher..." />
+      <button><i class="fa fa-search"></i></button>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Barre latérale -->
+    <aside class="sidebar">
+      <h2>Tendances</h2>
+      <ul>
+        <li>#Climat</li>
+        <li>#Politique</li>
+        <li>#IA</li>
+        <li>#FakeNews</li>
+      </ul>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="feed">
+      {% block content %}
+      {% endblock %}
+    </main>
+  </div>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

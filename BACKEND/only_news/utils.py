@@ -2,7 +2,7 @@ import os
 from django.conf import settings
 
 def get_available_sites():
-    scrap_root = os.path.join(settings.BASE_DIR, 'app/SCRAP/scrapers')
+    scrap_root = os.path.join(settings.BASE_DIR, 'SCRAP/scrapers')
 
     projects = {}
     for d in os.listdir(scrap_root):
