@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+  <div>
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<h1>Lancer un scraping</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Lancer</button>
+</form>
+
+<hr>
+
+<h2>📜 Historique des scrapings</h2>
+<ul>
+  {% for log in logs %}
+    <li>
+      {{ log.started_at }} - {{ log.spider_name }} ({{ log.category }}) - 
+      {% if log.status == 'Started' %}
+        <span style="color: blue;">En cours...</span>
+      {% elif log.status == 'Failed' %}
+        <span style="color: red;">Échec</span>
+      {% else %}
+        <span style="color: green;">Succès</span>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

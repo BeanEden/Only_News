@@ -12,6 +12,7 @@ BOT_NAME = "gorafi_scraper"
 SPIDER_MODULES = ["gorafi_scraper.spiders"]
 NEWSPIDER_MODULE = "gorafi_scraper.spiders"
 
+LOG_FILE = 'scrapy_log.txt'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "gorafi_scraper (+http://www.yourdomain.com)"

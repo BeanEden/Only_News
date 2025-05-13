@@ -1,0 +1,161 @@
+/* Variables de couleur */
+:root {
+    --primary-color: #1E3A8A; /* Bleu principal */
+    --accent-color: #F97316; /* Orange pour les deepfakes */
+    --white: #ffffff;
+    --light-bg: #f0f2f5;
+    --gray-text: #555;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light-bg);
+    margin: 0;
+  }
+  
+  .header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .main-nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .main-nav a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: bold;
+  }
+  
+  .main-nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar input {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    margin-right: 1rem;
+    width: 250px;
+  }
+  
+  .search-bar button {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .search-bar button:hover {
+    background-color: #F9701A;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
+    padding: 2rem;
+  }
+  
+  .sidebar {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    color: var(--gray-text);
+  }
+  
+  .feed {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feed h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .post-box {
+    margin-bottom: 2rem;
+  }
+  
+  .post-box textarea {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    resize: vertical;
+  }
+  
+  .post-box button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .post-box button:hover {
+    background-color: #162d6d;
+  }
+  
+  .post {
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+    font-size: 0.95rem;
+  }
+  
+  .post strong {
+    color: var(--primary-color);
+  }
+  
+  /* Post Deepfake */
+  .deepfake {
+    background-color: #fff3e0;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 0.5rem;
+  }
+  
+  /* Post Verified */
+  .post.verified {
+    background-color: #e0f7fa;
+    border-left: 4px solid #00acc1;
+    padding-left: 0.5rem;
+  }
