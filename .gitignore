@@ -6,3 +6,4 @@ DATA/DataLake/
 BACKEND/db.sqlite3
 BACKEND/scraping_output.log
 BACKEND/Scrap/scrapers/gorafi_scraper/scrapy_log.txt
+BACKEND/Scrap/scrapers/francetvinfo/francetvinfo_log.txt
