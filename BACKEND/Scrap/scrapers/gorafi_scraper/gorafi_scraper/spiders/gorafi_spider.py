@@ -50,7 +50,7 @@ class GorafiSpider(scrapy.Spider):
         author = response.css('.mvp-author-info-name span a::text').get()
         date = response.css('.mvp-author-info-date span time::attr(datetime)').get()
         category = response.meta['category']
-        title = response.css('h1::text').get()
+        title = response.css('h1::text').get().replace('\n', '').strip()
         paragraphs = response.css('#mvp-content-main p::text').getall()        
         content = '\n'.join([p.strip() for p in paragraphs if p.strip()])
 
@@ -84,3 +84,22 @@ class GorafiSpider(scrapy.Spider):
                 self.log(f'🚀 Uploaded {filename} to bucket {self.bucket_name}')
             except Exception as e:
                 self.log(f'❌ Failed to upload {filename} : {e}')
+
+
+def get_gorafi_categories():
+    import requests
+    from parsel import Selector
+
+    url = "https://www.legorafi.fr"
+    resp = requests.get(url)
+    sel = Selector(text=resp.text)
+
+    category_links = sel.css('#menu-menu-principal-1 li a::attr(href)').getall()
+
+    categories = []
+    for link in category_links:
+        if '/category/' in link:
+            slug = link.split('/category/')[-1].strip('/')
+            categories.append(slug)
+
+    return categories

@@ -1,33 +1,37 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Accueil{% endblock %}
 
 {% block content %}
 
 {% if messages %}
-  <div>
+  <script>
     {% for message in messages %}
-      <p>{{ message }}</p>
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: '{% if "success" in message.tags %}success{% elif "error" in message.tags %}error{% elif "warning" in message.tags %}warning{% else %}info{% endif %}',
+        title: '{{ message|escapejs }}',
+        showConfirmButton: false,
+        timer: 3000
+      });
     {% endfor %}
-  </div>
-{% endif %}
-
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            {{ message }}
-        </div>
-    {% endfor %}
+  </script>
 {% endif %}
 
 <h1>Lancer un scraping</h1>
 
 <form method="post">
   {% csrf_token %}
-  {{ form.as_p }}
+  <label for="id_spider">Site</label>
+  {{ form.spider }}
+
+  <label for="id_category">Catégorie</label>
+  <select name="category" id="id_category">
+    <option value="">-- Choisissez un site --</option>
+  </select>
+
   <button type="submit">Lancer</button>
 </form>
 
@@ -50,3 +54,51 @@
 </ul>
 
 {% endblock %}
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const spiderSelect = document.getElementById('id_spider');
+  const categorySelect = document.getElementById('id_category');
+  const selectedCategory = "{{ form.category.value|escapejs }}";
+
+  function loadCategories(spider, selected = null) {
+    if (!spider) {
+      categorySelect.innerHTML = '<option>-- Choisissez un site --</option>';
+      return;
+    }    
+    fetch(`{% url 'api_get_categories' %}?spider=${spider}`)
+      .then(response => response.json())
+      .then(data => {
+        categorySelect.innerHTML = '';
+        if (data.categories.length === 0) {
+          categorySelect.innerHTML = '<option>Aucune catégorie</option>';
+        } else {
+          const option = document.createElement('option')
+          option.value = '';
+          option.textContent = 'Toute';
+          categorySelect.appendChild(option)
+          data.categories.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat;
+            option.textContent = cat;
+            if (selected && selected === cat) {
+              option.selected = true;
+            }
+            categorySelect.appendChild(option);
+          });
+        }
+      });
+  }
+
+  spiderSelect.addEventListener('change', function () {
+    const selectedSpider = spiderSelect.value;
+    loadCategories(selectedSpider);
+  });
+
+  if (spiderSelect.value) {
+    loadCategories(spiderSelect.value, selectedCategory);
+  }
+});
+</script>
+{% endblock %}
+
