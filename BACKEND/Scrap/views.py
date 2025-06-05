@@ -7,7 +7,6 @@ from django.utils.timezone import now
 from .models import ScrapingLog
 from .forms import ScrapingForm
 from only_news.utils import get_available_sites
-from django.http import JsonResponse
 
 def start_scraping(request):
     sites = get_available_sites()
