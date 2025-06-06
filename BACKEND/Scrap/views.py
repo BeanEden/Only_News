@@ -50,7 +50,7 @@ def start_scraping(request):
                         stderr=log_file,
                         env=env
                     )
-                messages.success(request, f"Scraping '{spider}' lancé en arrière-plan ✅")
+                messages.success(request, f"Scraping '{spider}' pour la catégorie '{category}' lancé en arrière-plan ✅")
             except Exception as e:
                 log.status = 'Failed'
                 log.error_message = str(e)
