@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Connexion - OnlyNews{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+  <h2>Se connecter</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="username"><i class="fa fa-user"></i> Nom d'utilisateur</label>
+    <input type="text" name="username" id="username" required>
+
+    <label for="password"><i class="fa fa-lock"></i> Mot de passe</label>
+    <input type="password" name="password" id="password" required>
+
+    <button type="submit">Connexion</button>
+  </form>
+  <p>Pas encore de compte ? <a href="{% url 'register' %}">Créer un compte</a></p>
+</div>
+{% endblock %}
