@@ -16,18 +16,28 @@
     <div class="logo">
       <h1>📰 OnlyNews</h1>
     </div>
+
     <nav class="main-nav">
       <ul>
         <li><a href="/"><i class="fa fa-house"></i> Accueil</a></li>
         <li><a href="/posts/"><i class="fa fa-newspaper"></i> Posts</a></li>
         <li><a href="/scraping/"><i class="fa fa-mask"></i> scraping</a></li>
-        <li><a href="/profile/"><i class="fa fa-user"></i> Profil</a></li>
+        <li><a href="{% url 'profile' %}"><i class="fa fa-user"></i> Profil</a></li>
       </ul>
     </nav>
+
     <div class="search-bar">
       <input type="text" placeholder="Rechercher..." />
       <button><i class="fa fa-search"></i></button>
     </div>
+
+    {% if request.user.is_authenticated %}
+    <div class="logout-icon" style="margin-left: 20px;">
+      <a href="{% url 'logout' %}" title="Se déconnecter">
+        <i class="fas fa-sign-out-alt fa-lg" style="color: white;"></i>
+      </a>
+    </div>
+    {% endif %}
   </header>
 
   <div class="container">
@@ -50,5 +60,28 @@
   </div>
 
   {% block scripts %}{% endblock %}
+
+  {% if not request.user.is_authenticated and request.path != '/users/login/' and request.path != '/users/register/' %}
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      Swal.fire({
+        title: 'Bienvenue sur OnlyNews',
+        text: 'Veuillez vous connecter ou créer un compte pour accéder au site.',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Se connecter',
+        cancelButtonText: 'Créer un compte',
+        allowOutsideClick: false,
+        allowEscapeKey: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = "{% url 'login' %}";
+        } else {
+          window.location.href = "{% url 'register' %}";
+        }
+      });
+    });
+  </script>
+  {% endif %}
 </body>
 </html>

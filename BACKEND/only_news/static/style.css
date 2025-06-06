@@ -159,3 +159,74 @@
     border-left: 4px solid #00acc1;
     padding-left: 0.5rem;
   }
+
+  .auth-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-family: 'Inter', sans-serif;
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.auth-container label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1.5rem;
+  background-color: #111827;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.auth-container button:hover {
+  background-color: #1f2937;
+}
+
+.auth-container p {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.messages {
+  list-style: none;
+  padding: 0;
+}
+.messages li {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.messages li.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+.messages li.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+
