@@ -1,5 +1,8 @@
 import os
 from django.conf import settings
+from dateutil import parser
+import re
+from datetime import datetime
 
 def get_available_sites():
     scrap_root = os.path.join(settings.BASE_DIR, 'SCRAP/scrapers')
@@ -14,3 +17,19 @@ def get_available_sites():
 
     print(f'✅ Projets détectés: {projects}')
     return projects
+
+def parse_date(date_str):
+    # Premier essai : parser avec dateutil (gère ISO 8601)
+    try:
+        return parser.isoparse(date_str)
+    except Exception:
+        pass
+
+    # Exemple de format français "02/06/2025 à 08h00"
+    match = re.match(r"(\d{2})/(\d{2})/(\d{4}) à (\d{2})h(\d{2})", date_str)
+    if match:
+        day, month, year, hour, minute = match.groups()
+        return datetime(int(year), int(month), int(day), int(hour), int(minute))
+
+    # Si aucun format reconnu, renvoyer None ou lever une erreur
+    return None

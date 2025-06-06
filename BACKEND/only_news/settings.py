@@ -15,7 +15,7 @@ import os
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(dotenv_path=BASE_DIR / '.env')
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -85,16 +85,11 @@ DATABASES = {
         'NAME': os.getenv('MYSQL_DATABASE'),
         'USER': os.getenv('MYSQL_USER'),
         'PASSWORD': os.getenv('MYSQL_PASSWORD'),
-        'HOST': os.getenv('MYSQL_HOST'),
-        'PORT': '3306',
-    },
-    'OPTIONS': {
-        'driver': 'ODBC Driver 17 for SQL Server',
-        'encrypt': True,
-        'trustServerCertificate': True,
-    },
+        'HOST': os.getenv('MYSQL_HOST', 'localhost'),  
+        'PORT': os.getenv('MYSQL_PORT', '3306'),       
+    }
 }
-
+ 
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
