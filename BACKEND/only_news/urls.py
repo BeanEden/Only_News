@@ -24,4 +24,5 @@ urlpatterns = [
     path('', views.home_onlyNews, name='home'),
     path('API/', include('API.urls'), name='API'),
     path('scraping/', include('Scrap.urls')),
+    path('posts/', include('posts.urls')),
 ]
