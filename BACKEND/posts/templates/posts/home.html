@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h2>Tous les posts</h2>
+
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert" style="background: #ffe0e0; padding: 1rem; border-radius: 5px; color: #900;">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+  {% if user.is_authenticated %}
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Publier</button>
+    </form>
+  {% else %}
+    <p>Connectez-vous pour publier un post.</p>
+  {% endif %}
+
+  <hr>
+
+  {% if posts %}
+    {% for post in posts %}
+  <div class="post-card {% if post.is_suspect %}suspect{% else %}valid{% endif %}">
+    <p><strong>{{ post.author.username }}</strong> a publié :</p>
+    <p>{{ post.content }}</p>
+    <p class="meta">🕒 {{ post.created_at|date:"d/m/Y H:i" }}</p>
+    {% if post.is_suspect %}
+      <p class="warning">⚠️ Ce post semble contenir des informations douteuses.</p>
+    {% endif %}
+  </div>
+{% endfor %}
+  {% else %}
+    <p>Aucun post pour le moment.</p>
+  {% endif %}
+{% endblock %}
